@@ -68,7 +68,9 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:${{github.run_id}}
+        tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:${{github.run_id}}
+            ${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:latest
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -87,7 +89,7 @@ jobs:
         ECR_REPOSITORY: ${{ secrets.ECR_REPO }}  # Change to your ECR repository name
         IMAGE_TAG: ${{ github.run_id }}
       run: |
-        docker tag go-web-app:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker tag ${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
   update-newtag-in-helm-chart:
