@@ -34,3 +34,10 @@ kubectl edit deploy go-web-app
 
 # To delete Deployment with helm run this command
 helm uninstall go-web-app
+
+# Fetch the secret of argocd server
+argocd-initial-admin-secret
+kubectl edit secret argocd-initial-admin-secret -n argocd
+# Copy password b2RXcUxrZzdhNWlmeEp4WQ==
+# Decode Password
+echo b2RXcUxrZzdhNWlmeEp4WQ== | base64 --decode
