@@ -8,7 +8,7 @@ image:
   repository: gyenoch/go-web-app
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "10441152151"
+  tag: "10441378993"
 
 ingress:
   enabled: false
