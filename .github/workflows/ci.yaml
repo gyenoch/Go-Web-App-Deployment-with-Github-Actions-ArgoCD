@@ -89,8 +89,7 @@ jobs:
         IMAGE_TAG: ${{ github.run_id }}
       run: |
         docker pull ${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:${{github.run_id}}
-        docker tag ${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:${{github.run_id}}
-        $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker tag ${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:${{github.run_id}} $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
   update-newtag-in-helm-chart:
