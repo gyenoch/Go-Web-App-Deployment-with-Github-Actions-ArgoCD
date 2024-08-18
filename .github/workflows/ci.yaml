@@ -85,7 +85,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: ${{ secrets.ECR_REPO }}  # Change to your ECR repository name
-        MAGE_TAG: ${{ github.run_id }}
+        IMAGE_TAG: ${{ github.run_id }}
       run: |
         docker tag go-web-app:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
