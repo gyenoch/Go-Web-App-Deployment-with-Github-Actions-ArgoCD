@@ -6,9 +6,10 @@ kubectl get pods -n ingress-nginx
 kubectl edit pod ingress-nginx-controller-784997fdc7-tc4jc -n ingress-nginx
 
 kubectl get ingress
+kubectl get pods -n ingress-nginx
 
 # nslookup to get the ip addresses
-nslookup <load-balancer>
+nslookup a9cb20380b2a14fc29e7d89278a855eb-ac07c191ffb83b0b.elb.us-east-1.amazonaws.com
 
 sudo vi /etc/host/
 # Map the ip addresses to the hostname
@@ -28,6 +29,9 @@ vi values.yaml
 # Install the chart
 helm install go-web-app ./go-web-app-chart
 helm install go-web-app-chart ./go-web-app-chart -f values.yaml
+
+# Uninstall deployment with helm
+helm uninstall go-web-app
 
 # Verify Deployment
 kubectl edit deploy go-web-app
