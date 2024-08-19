@@ -44,4 +44,12 @@ argocd-initial-admin-secret
 kubectl edit secret argocd-initial-admin-secret -n argocd
 # Copy password b2RXcUxrZzdhNWlmeEp4WQ==
 # Decode Password
-echo b2RXcUxrZzdhNWlmeEp4WQ== | base64 --decode
+echo eVRXdW5Ya3hlbkNQcW5NVQ== | base64 --decode  #yTWunXkxenCPqnMU
+
+# Get Port of Argocd server
+kubectl get svc -n argocd argocd-server #30557
+kubectl get svc -n argocd argocd-server -o jsonpath="{.spec.ports[0].nodePort}"
+# Fetch IP Address of Nodes
+kubectl get nodes -o wide
+# Access Argocd Server
+http://<NodeIP>:<Port>
